@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>발칙한 관찰자 — 소설 리더 & 관찰 콘솔</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="app.css">
+</head>
+<body class="theme-dark">
+  <!-- Dynamic Background Grid / Ambient glow -->
+  <div class="ambient-glow"></div>
+  <div class="grid-overlay"></div>
+
+  <!-- Navigation Bar -->
+  <header class="app-header">
+    <div class="logo">
+      <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>
+      <span class="logo-text">OBSERVER CONSOLE</span>
+    </div>
+    <nav class="nav-links">
+      <button class="nav-btn active" data-target="tab-home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        소설 홈
+      </button>
+      <button class="nav-btn" data-target="tab-reader" id="nav-reader-btn" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10M6 10h10"/></svg>
+        독서 모드
+      </button>
+      <button class="nav-btn" data-target="tab-write">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+        집필 / 업로드
+      </button>
+      <button class="nav-btn" data-target="tab-dashboard" id="nav-dashboard-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        분석 콘솔
+      </button>
+    </nav>
+  </header>
+
+  <!-- Main View Container -->
+  <main class="app-content">
+    
+    <!-- TAB 1: HOME -->
+    <section id="tab-home" class="tab-pane active">
+      <div class="hero-section">
+        <div class="novel-cover-wrapper">
+          <div class="novel-cover">
+            <div class="cover-glare"></div>
+            <div class="cover-matrix"></div>
+            <div class="cover-content">
+              <span class="cover-tag">AI MYSTERY THRILLER</span>
+              <h1 class="cover-title">발칙한<br>관찰자</h1>
+              <p class="cover-author">도형 作</p>
+              <div class="cover-footer">
+                <span class="pulse-dot"></span> OBSERVATION CONSOLE SYSTEM
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="novel-info">
+          <div class="novel-badge">연재 소설</div>
+          <h2 class="novel-title-kr">발칙한 관찰자 (The Insolent Observer)</h2>
+          <p class="novel-synopsis">
+            "교회 방송실 구석, 개인용 워크스테이션에서 구동되는 불법 CCTV 분석 프로그램. 수천 명의 교인을 대상으로 흥미로 시작했던 행동 패턴 분석 알고리즘은 교회의 가장 높은 인물이 감춰둔 잔인하고 은밀한 시선의 그늘을 뱉어내기 시작한다. 그리고 카메라 렌즈가 움직여, 화면 속 그녀가 정확히 나를 똑바로 쳐다보았다..."
+          </p>
+          <div class="novel-meta-tags">
+            <span>#스릴러</span>
+            <span>#미스터리</span>
+            <span>#인공지능</span>
+            <span>#CCTV</span>
+            <span>#서스펜스</span>
+          </div>
+          <div class="quick-stats">
+            <div class="q-stat-card">
+              <span class="q-stat-label">전체 분량</span>
+              <span class="q-stat-val" id="total-char-count">—</span>
+            </div>
+            <div class="q-stat-card">
+              <span class="q-stat-label">챕터 수</span>
+              <span class="q-stat-val" id="total-chapters">—</span>
+            </div>
+            <div class="q-stat-card">
+              <span class="q-stat-label">평균 독서 시간</span>
+              <span class="q-stat-val" id="avg-read-time">—</span>
+            </div>
+          </div>
+          <button class="primary-btn" id="start-reading-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            첫 챕터부터 읽기
+          </button>
+        </div>
+      </div>
+
+      <!-- Chapter Directory -->
+      <div class="chapter-directory">
+        <h3 class="section-title">챕터 리스트</h3>
+        <div class="chapters-grid" id="chapters-grid">
+          <!-- Chapter cards dynamically loaded -->
+          <div class="loading-spinner"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: READER MODE -->
+    <section id="tab-reader" class="tab-pane">
+      <div class="reader-container">
+        
+        <!-- Reader Settings Bar -->
+        <div class="reader-toolbar">
+          <button class="toolbar-btn" id="reader-close-btn" title="닫기">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+          
+          <span class="reader-chapter-title" id="reader-current-title">챕터 제목</span>
+          
+          <div class="toolbar-right">
+            <!-- TTS Controls -->
+            <div class="tts-group">
+              <button class="toolbar-btn" id="tts-play-btn" title="음성 낭독 시작">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+              </button>
+              <button class="toolbar-btn hidden" id="tts-stop-btn" title="음성 낭독 중지">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/></svg>
+              </button>
+            </div>
+            
+            <!-- Font Style Settings Menu -->
+            <div class="dropdown">
+              <button class="toolbar-btn" id="settings-toggle-btn" title="독서 환경 설정">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+              </button>
+              <div class="dropdown-content" id="settings-dropdown">
+                <div class="setting-item">
+                  <span class="setting-label">글자 크기</span>
+                  <div class="size-controls">
+                    <button class="size-btn" id="size-dec">A-</button>
+                    <span id="current-size-percent">100%</span>
+                    <button class="size-btn" id="size-inc">A+</button>
+                  </div>
+                </div>
+                <div class="setting-item">
+                  <span class="setting-label">줄 간격</span>
+                  <div class="spacing-controls">
+                    <button class="spacing-btn" id="spacing-tight">좁게</button>
+                    <button class="spacing-btn active" id="spacing-normal">보통</button>
+                    <button class="spacing-btn" id="spacing-wide">넓게</button>
+                  </div>
+                </div>
+                <div class="setting-item">
+                  <span class="setting-label">글꼴</span>
+                  <select id="font-select">
+                    <option value="font-myeongjo">명조체 (바탕)</option>
+                    <option value="font-gothic" selected>고딕체 (Noto Sans)</option>
+                    <option value="font-monospace">코딩체 (Fira Code)</option>
+                  </select>
+                </div>
+                <div class="setting-item">
+                  <span class="setting-label">배경 테마</span>
+                  <div class="theme-grid">
+                    <button class="theme-select-btn theme-light-btn" data-theme="theme-light" title="밝게"></button>
+                    <button class="theme-select-btn theme-sepia-btn" data-theme="theme-sepia" title="세피아"></button>
+                    <button class="theme-select-btn theme-dark-btn active" data-theme="theme-dark" title="어둡게"></button>
+                    <button class="theme-select-btn theme-observer-btn" data-theme="theme-observer" title="관찰자(AI)"></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Reading Progress Bar -->
+        <div class="progress-container">
+          <div class="progress-bar" id="reader-progress-bar"></div>
+        </div>
+
+        <!-- Reader Canvas -->
+        <div class="reader-viewport font-gothic" id="reader-body">
+          <div class="reader-paper" id="reader-content-area">
+            <!-- Chapter content injected here -->
+          </div>
+        </div>
+
+        <!-- Reader Navigation -->
+        <div class="reader-navigation">
+          <button class="nav-prev-btn" id="prev-chapter-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            이전 챕터
+          </button>
+          <button class="nav-toc-btn" id="toc-btn">목차로</button>
+          <button class="nav-next-btn" id="next-chapter-btn">
+            다음 챕터
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: 집필 / 업로드 -->
+    <section id="tab-write" class="tab-pane">
+      <div class="write-grid">
+        <!-- Text Editor -->
+        <div class="editor-container">
+          <h3 class="panel-title">새로운 챕터 집필</h3>
+          <div class="editor-header">
+            <div class="editor-meta-inputs">
+              <div class="input-group">
+                <label for="edit-chap-num">번호</label>
+                <input type="number" id="edit-chap-num" min="0" placeholder="예: 23" required>
+              </div>
+              <div class="input-group">
+                <label for="edit-chap-type">유형</label>
+                <select id="edit-chap-type">
+                  <option value="장" selected>장</option>
+                  <option value="프롤로그">프롤로그</option>
+                </select>
+              </div>
+              <div class="input-group flex-grow">
+                <label for="edit-chap-title">제목</label>
+                <input type="text" id="edit-chap-title" placeholder="챕터 제목을 입력하세요..." required>
+              </div>
+            </div>
+          </div>
+          <div class="editor-body-wrapper">
+            <textarea id="editor-textarea" placeholder="이곳에 소설 본문을 작성하세요..."></textarea>
+          </div>
+          <div class="editor-footer">
+            <div class="char-count">공백 제외: <span id="live-char-count">0</span>자</div>
+            <button class="primary-btn" id="save-chapter-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+              파일로 저장하기
+            </button>
+          </div>
+        </div>
+
+        <!-- File Upload Portal -->
+        <div class="upload-sidebar">
+          <div class="upload-card">
+            <h3 class="panel-title">기존 파일 업로드</h3>
+            <p class="panel-desc">컴퓨터에 저장된 `.txt` 형식의 소설 파일을 웹으로 직접 업로드할 수 있습니다.</p>
+            
+            <div class="dropzone" id="dropzone">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="upload-icon"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <p>여기에 파일을 드래그하거나 <strong>클릭하여 업로드</strong>하세요.</p>
+              <span class="file-hint">파일명 예시: 23장 새로운 시작.txt</span>
+              <input type="file" id="file-input" accept=".txt" class="hidden">
+            </div>
+
+            <div class="file-info-preview hidden" id="upload-preview">
+              <div class="file-icon-text">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                <span id="preview-filename">filename.txt</span>
+              </div>
+              <button class="secondary-btn" id="upload-btn">업로드 실행</button>
+            </div>
+            
+            <div id="upload-status" class="upload-status"></div>
+          </div>
+          
+          <div class="notice-card">
+            <h4><span class="pulse-dot red"></span> 감시 장비 주의사항</h4>
+            <p>서버는 오직 `XX장  제목.txt` 또는 `XX프롤로그  제목.txt` 형태의 한글/영어 텍스트(.txt) 파일 업로드만을 통제/보관합니다. 규칙을 위반한 파일명은 시스템 에러를 발생시킬 수 있습니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: OBSERVATION CONSOLE (DASHBOARD) -->
+    <section id="tab-dashboard" class="tab-pane">
+      <div class="dashboard-grid">
+        
+        <!-- Row 1: System Console Stats -->
+        <div class="console-card stat-summary-wrapper">
+          <div class="console-card-header">
+            <span class="tag">[SYSTEM DIAGNOSTIC]</span>
+            <h4>소설 데이터 종합 통계</h4>
+          </div>
+          <div class="dashboard-stats-grid">
+            <div class="db-stat-item">
+              <div class="db-stat-val" id="db-total-chapters">—</div>
+              <div class="db-stat-label">총 챕터</div>
+            </div>
+            <div class="db-stat-item">
+              <div class="db-stat-val" id="db-total-chars">—</div>
+              <div class="db-stat-label">총 글자 수 (공백 제외)</div>
+            </div>
+            <div class="db-stat-item">
+              <div class="db-stat-val" id="db-total-words">—</div>
+              <div class="db-stat-label">총 단어 수</div>
+            </div>
+            <div class="db-stat-item">
+              <div class="db-stat-val" id="db-avg-chars">—</div>
+              <div class="db-stat-label">챕터당 평균 글자 수</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2: Search Console & Matches -->
+        <div class="console-card search-card">
+          <div class="console-card-header">
+            <span class="tag">[TEXT INDEXING SEARCH]</span>
+            <h4>소설 텍스트 탐색 / 로그 추적</h4>
+          </div>
+          <div class="search-input-wrapper">
+            <input type="text" id="search-input" placeholder="본문 키워드를 입력해 추적하세요 (예: 도형, 장로, CCTV, 알고리즘)...">
+            <button class="primary-btn" id="search-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              추적
+            </button>
+          </div>
+          <div class="search-results-list" id="search-results">
+            <div class="empty-state">탐색 결과가 여기에 로그 파일 형태로 출력됩니다.</div>
+          </div>
+        </div>
+
+        <!-- Row 3: Tension Index & Character Frequency Charts -->
+        <div class="console-card full-width">
+          <div class="console-card-header">
+            <span class="tag">[TENSION WAVEFORM & ACCENT GRAPH]</span>
+            <h4>이야기 전개별 긴장도 및 핵심 키워드 감시 그래프</h4>
+          </div>
+          
+          <div class="chart-layout-wrapper">
+            <!-- Tension Index Waveform -->
+            <div class="chart-container">
+              <h5>이야기 긴장도 웨이브폼 (Tension Index)</h5>
+              <div class="waveform-chart" id="tension-waveform">
+                <!-- Programmatically rendered bar chart/wave -->
+                <div class="empty-state">소설 통계 데이터 로딩 중...</div>
+              </div>
+              <p class="chart-caption">※ 긴장도는 각 챕터에 출현하는 긴장 유발 관련 명사/동사의 가중치를 바탕으로 알고리즘에 의해 자동 계산됩니다.</p>
+            </div>
+
+            <!-- Character Frequency Dashboard -->
+            <div class="chart-container">
+              <h5>주요 등장인물 & 키워드 등장 횟수 분석</h5>
+              <div class="keywords-list" id="keyword-frequency-list">
+                <!-- Will render bars of characters / keywords -->
+                <div class="empty-state">소설 데이터 통계 분석 중...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-left">
+      <span class="status-indicator online"></span>
+      <span id="footer-system-status">OBSERVER CONSOLE CONNECTED (PORT 3000)</span>
+    </div>
+    <div class="footer-right">
+      <span>AI NOVEL WORKSPACE v1.0.0</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
