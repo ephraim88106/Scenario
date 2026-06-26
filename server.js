@@ -4,6 +4,7 @@ import multer from 'multer';
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { generateStaticData } from './build-static.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -138,6 +139,7 @@ app.post('/api/chapters', async (req, res) => {
   
   try {
     await fs.writeFile(filePath, content, 'utf-8');
+    await generateStaticData(); // Regenerate JSON files dynamically for frontend
     res.status(201).json({ message: 'Chapter saved successfully', filename });
   } catch (error) {
     res.status(500).json({ error: 'Failed to write chapter file' });
@@ -161,6 +163,10 @@ app.post('/api/upload', upload.single('file'), async (req, res) => {
       error: '파일명 형식이 맞지 않습니다. 예시: "23장  새로운 시작.txt" 또는 "00프롤로그  관찰자.txt"' 
     });
   }
+  
+  try {
+    await generateStaticData(); // Regenerate JSON files dynamically for frontend
+  } catch (err) {}
   
   res.json({ message: 'File uploaded successfully', filename: originalName });
 });
@@ -228,6 +234,11 @@ app.get('/api/stats', async (req, res) => {
 });
 
 // Start server
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`Server is running at http://localhost:${PORT}`);
+  try {
+    await generateStaticData();
+  } catch (err) {
+    console.error('Initial static data generation failed:', err);
+  }
 });

@@ -83,7 +83,36 @@ document.addEventListener('DOMContentLoaded', () => {
   initEditorAndUpload();
   initDashboardEvents();
   applySavedStyles();
+  applyLocalOnlyRestrictions();
 });
+
+function applyLocalOnlyRestrictions() {
+  const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  if (!isLocal) {
+    if (editChapNum) editChapNum.disabled = true;
+    if (editChapType) editChapType.disabled = true;
+    if (editChapTitle) editChapTitle.disabled = true;
+    if (editorTextarea) {
+      editorTextarea.disabled = true;
+      editorTextarea.placeholder = "소설 집필 기능은 로컬 실행 모드(localhost)에서만 가능합니다. 웹 배포 버전은 읽기 전용입니다.";
+    }
+    if (saveChapterBtn) {
+      saveChapterBtn.disabled = true;
+      saveChapterBtn.textContent = "로컬 모드에서만 저장 가능";
+    }
+    
+    if (dropzone) {
+      dropzone.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="upload-icon" style="color: var(--danger-color)"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <p>정적 호스팅 환경에서는 파일 업로드가 지원되지 않습니다.</p>
+        <span class="file-hint">새 챕터를 추가하려면 로컬 폴더에 소설 파일을 넣고 Git으로 커밋/푸시하십시오.</span>
+      `;
+      // Clone dropzone to remove event listeners
+      const newDropzone = dropzone.cloneNode(true);
+      dropzone.parentNode.replaceChild(newDropzone, dropzone);
+    }
+  }
+}
 
 /* ==========================================================================
    NAVIGATION
@@ -143,7 +172,7 @@ function switchTab(tabId) {
    ========================================================================== */
 async function loadChaptersList() {
   try {
-    const res = await fetch('/api/chapters');
+    const res = await fetch('data/chapters.json');
     const data = await res.json();
     state.chapters = data;
     renderChaptersGrid();
@@ -219,7 +248,7 @@ async function openReader(chapterId) {
   switchTab('tab-reader');
 
   try {
-    const res = await fetch(`/api/chapters/${chapterId}`);
+    const res = await fetch(`data/chapter-${chapterId}.json`);
     const chapter = await res.json();
     
     // Parse title
@@ -651,7 +680,7 @@ async function loadDashboardStats() {
   keywordFrequencyList.innerHTML = `<div class="loading-spinner"></div>`;
 
   try {
-    const res = await fetch('/api/stats');
+    const res = await fetch('data/stats.json');
     const stats = await res.json();
 
     // Summary Cards
@@ -761,7 +790,7 @@ async function executeDashboardSearch() {
     
     // We fetch each chapter and check for occurrences
     for (const chapter of state.chapters) {
-      const res = await fetch(`/api/chapters/${chapter.id}`);
+      const res = await fetch(`data/chapter-${chapter.id}.json`);
       const detailed = await res.json();
       
       const content = detailed.content;

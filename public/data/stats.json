@@ -1,0 +1,406 @@
+{
+  "chapterCount": 22,
+  "totalCharacters": 34064,
+  "totalWords": 10818,
+  "averageLength": 1548,
+  "characterMentions": [
+    {
+      "chapterId": 1,
+      "title": "완벽한 진열장과 시선",
+      "도형": 21,
+      "장로": 9,
+      "교회": 3,
+      "CCTV": 0,
+      "카메라": 4,
+      "AI": 0,
+      "경고": 0,
+      "비밀": 0,
+      "가족": 5
+    },
+    {
+      "chapterId": 2,
+      "title": "생존의 알고리즘",
+      "도형": 9,
+      "장로": 1,
+      "교회": 6,
+      "CCTV": 1,
+      "카메라": 2,
+      "AI": 0,
+      "경고": 1,
+      "비밀": 0,
+      "가족": 1
+    },
+    {
+      "chapterId": 3,
+      "title": "사각지대 (The Blind Spot)",
+      "도형": 14,
+      "장로": 0,
+      "교회": 4,
+      "CCTV": 1,
+      "카메라": 2,
+      "AI": 0,
+      "경고": 0,
+      "비밀": 1,
+      "가족": 0
+    },
+    {
+      "chapterId": 4,
+      "title": "보이지 않는 끈 (The Invisible Tether)",
+      "도형": 19,
+      "장로": 0,
+      "교회": 0,
+      "CCTV": 0,
+      "카메라": 0,
+      "AI": 0,
+      "경고": 1,
+      "비밀": 0,
+      "가족": 0
+    },
+    {
+      "chapterId": 5,
+      "title": "유리 감옥 (The Glass Prison)",
+      "도형": 7,
+      "장로": 0,
+      "교회": 3,
+      "CCTV": 0,
+      "카메라": 0,
+      "AI": 0,
+      "경고": 0,
+      "비밀": 0,
+      "가족": 1
+    },
+    {
+      "chapterId": 6,
+      "title": "유리벽 너머의 균열 (Cracks behind the Glass Wall)",
+      "도형": 13,
+      "장로": 1,
+      "교회": 2,
+      "CCTV": 0,
+      "카메라": 0,
+      "AI": 0,
+      "경고": 0,
+      "비밀": 0,
+      "가족": 0
+    },
+    {
+      "chapterId": 7,
+      "title": "침범 (Intrusion)",
+      "도형": 15,
+      "장로": 0,
+      "교회": 3,
+      "CCTV": 0,
+      "카메라": 1,
+      "AI": 0,
+      "경고": 0,
+      "비밀": 1,
+      "가족": 0
+    },
+    {
+      "chapterId": 8,
+      "title": "위선과 온기 사이 (Between Hypocrisy and Warmth)",
+      "도형": 14,
+      "장로": 0,
+      "교회": 6,
+      "CCTV": 1,
+      "카메라": 0,
+      "AI": 0,
+      "경고": 0,
+      "비밀": 0,
+      "가족": 0
+    },
+    {
+      "chapterId": 9,
+      "title": "세대 간의 벽 (The Generational Wall)",
+      "도형": 12,
+      "장로": 0,
+      "교회": 1,
+      "CCTV": 0,
+      "카메라": 0,
+      "AI": 0,
+      "경고": 0,
+      "비밀": 0,
+      "가족": 0
+    },
+    {
+      "chapterId": 10,
+      "title": "고난주간의 그림자 (Shadows of Passion Week)",
+      "도형": 16,
+      "장로": 12,
+      "교회": 1,
+      "CCTV": 0,
+      "카메라": 0,
+      "AI": 0,
+      "경고": 0,
+      "비밀": 0,
+      "가족": 0
+    },
+    {
+      "chapterId": 11,
+      "title": "십자가의 그림자 (Shadows of the Cross)",
+      "도형": 14,
+      "장로": 11,
+      "교회": 1,
+      "CCTV": 0,
+      "카메라": 0,
+      "AI": 0,
+      "경고": 0,
+      "비밀": 0,
+      "가족": 0
+    },
+    {
+      "chapterId": 12,
+      "title": "여름밤의 짧은 평온 (Short Peace of a Summer Night)",
+      "도형": 15,
+      "장로": 0,
+      "교회": 2,
+      "CCTV": 0,
+      "카메라": 0,
+      "AI": 0,
+      "경고": 0,
+      "비밀": 1,
+      "가족": 0
+    },
+    {
+      "chapterId": 13,
+      "title": "깨어진 꿈 (The Shattered Dream)",
+      "도형": 15,
+      "장로": 9,
+      "교회": 1,
+      "CCTV": 0,
+      "카메라": 0,
+      "AI": 0,
+      "경고": 0,
+      "비밀": 0,
+      "가족": 0
+    },
+    {
+      "chapterId": 14,
+      "title": "살얼음판 위의 웃음 (The Smile on Thin Ice)",
+      "도형": 17,
+      "장로": 20,
+      "교회": 3,
+      "CCTV": 0,
+      "카메라": 0,
+      "AI": 0,
+      "경고": 0,
+      "비밀": 1,
+      "가족": 0
+    },
+    {
+      "chapterId": 15,
+      "title": "헌법의 그늘 (The Shadow of the Constitution)",
+      "도형": 15,
+      "장로": 15,
+      "교회": 10,
+      "CCTV": 0,
+      "카메라": 0,
+      "AI": 0,
+      "경고": 0,
+      "비밀": 0,
+      "가족": 0
+    },
+    {
+      "chapterId": 16,
+      "title": "공생의 가면 (The Mask of Symbiosis)",
+      "도형": 13,
+      "장로": 15,
+      "교회": 4,
+      "CCTV": 0,
+      "카메라": 0,
+      "AI": 0,
+      "경고": 0,
+      "비밀": 1,
+      "가족": 0
+    },
+    {
+      "chapterId": 17,
+      "title": "평범한 하루의 무게 (The Weight of an Ordinary Day)",
+      "도형": 15,
+      "장로": 0,
+      "교회": 3,
+      "CCTV": 0,
+      "카메라": 0,
+      "AI": 0,
+      "경고": 0,
+      "비밀": 1,
+      "가족": 0
+    },
+    {
+      "chapterId": 18,
+      "title": "서성이는 밤 (The Wandering Night)",
+      "도형": 16,
+      "장로": 2,
+      "교회": 3,
+      "CCTV": 0,
+      "카메라": 0,
+      "AI": 0,
+      "경고": 0,
+      "비밀": 2,
+      "가족": 0
+    },
+    {
+      "chapterId": 19,
+      "title": "식탁 위의 침묵 (Silence at the Table)",
+      "도형": 0,
+      "장로": 2,
+      "교회": 5,
+      "CCTV": 0,
+      "카메라": 0,
+      "AI": 0,
+      "경고": 0,
+      "비밀": 1,
+      "가족": 0
+    },
+    {
+      "chapterId": 20,
+      "title": "감추어진 왕국 (The Hidden Kingdom)",
+      "도형": 0,
+      "장로": 12,
+      "교회": 2,
+      "CCTV": 0,
+      "카메라": 0,
+      "AI": 0,
+      "경고": 0,
+      "비밀": 1,
+      "가족": 0
+    },
+    {
+      "chapterId": 21,
+      "title": "판도라의 블랙박스 (Pandora's Blackbox)",
+      "도형": 14,
+      "장로": 21,
+      "교회": 2,
+      "CCTV": 0,
+      "카메라": 0,
+      "AI": 0,
+      "경고": 0,
+      "비밀": 0,
+      "가족": 0
+    },
+    {
+      "chapterId": 22,
+      "title": "위태로운 배회 (Precarious Wandering)",
+      "도형": 1,
+      "장로": 6,
+      "교회": 1,
+      "CCTV": 0,
+      "카메라": 0,
+      "AI": 0,
+      "경고": 0,
+      "비밀": 0,
+      "가족": 0
+    }
+  ],
+  "tensionIndex": [
+    {
+      "chapterId": 1,
+      "title": "완벽한 진열장과 시선",
+      "tensionScore": 12
+    },
+    {
+      "chapterId": 2,
+      "title": "생존의 알고리즘",
+      "tensionScore": 14
+    },
+    {
+      "chapterId": 3,
+      "title": "사각지대 (The Blind Spot)",
+      "tensionScore": 21
+    },
+    {
+      "chapterId": 4,
+      "title": "보이지 않는 끈 (The Invisible Tether)",
+      "tensionScore": 8
+    },
+    {
+      "chapterId": 5,
+      "title": "유리 감옥 (The Glass Prison)",
+      "tensionScore": 13
+    },
+    {
+      "chapterId": 6,
+      "title": "유리벽 너머의 균열 (Cracks behind the Glass Wall)",
+      "tensionScore": 5
+    },
+    {
+      "chapterId": 7,
+      "title": "침범 (Intrusion)",
+      "tensionScore": 8
+    },
+    {
+      "chapterId": 8,
+      "title": "위선과 온기 사이 (Between Hypocrisy and Warmth)",
+      "tensionScore": 3
+    },
+    {
+      "chapterId": 9,
+      "title": "세대 간의 벽 (The Generational Wall)",
+      "tensionScore": 3
+    },
+    {
+      "chapterId": 10,
+      "title": "고난주간의 그림자 (Shadows of Passion Week)",
+      "tensionScore": 5
+    },
+    {
+      "chapterId": 11,
+      "title": "십자가의 그림자 (Shadows of the Cross)",
+      "tensionScore": 3
+    },
+    {
+      "chapterId": 12,
+      "title": "여름밤의 짧은 평온 (Short Peace of a Summer Night)",
+      "tensionScore": 9
+    },
+    {
+      "chapterId": 13,
+      "title": "깨어진 꿈 (The Shattered Dream)",
+      "tensionScore": 20
+    },
+    {
+      "chapterId": 14,
+      "title": "살얼음판 위의 웃음 (The Smile on Thin Ice)",
+      "tensionScore": 3
+    },
+    {
+      "chapterId": 15,
+      "title": "헌법의 그늘 (The Shadow of the Constitution)",
+      "tensionScore": 8
+    },
+    {
+      "chapterId": 16,
+      "title": "공생의 가면 (The Mask of Symbiosis)",
+      "tensionScore": 3
+    },
+    {
+      "chapterId": 17,
+      "title": "평범한 하루의 무게 (The Weight of an Ordinary Day)",
+      "tensionScore": 6
+    },
+    {
+      "chapterId": 18,
+      "title": "서성이는 밤 (The Wandering Night)",
+      "tensionScore": 3
+    },
+    {
+      "chapterId": 19,
+      "title": "식탁 위의 침묵 (Silence at the Table)",
+      "tensionScore": 12
+    },
+    {
+      "chapterId": 20,
+      "title": "감추어진 왕국 (The Hidden Kingdom)",
+      "tensionScore": 13
+    },
+    {
+      "chapterId": 21,
+      "title": "판도라의 블랙박스 (Pandora's Blackbox)",
+      "tensionScore": 10
+    },
+    {
+      "chapterId": 22,
+      "title": "위태로운 배회 (Precarious Wandering)",
+      "tensionScore": 11
+    }
+  ]
+}
