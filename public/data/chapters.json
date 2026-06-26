@@ -1,5 +1,16 @@
 [
   {
+    "id": 0,
+    "filename": "00 프롤로그  발칙한 관찰자.txt",
+    "chapterNumber": 0,
+    "type": "프롤로그",
+    "title": "발칙한 관찰자",
+    "charCount": 1926,
+    "wordCount": 595,
+    "readingTime": 4,
+    "mtime": "2026-06-26T09:10:39.619Z"
+  },
+  {
     "id": 1,
     "filename": "01장  완벽한 진열장과 시선.txt",
     "chapterNumber": 1,

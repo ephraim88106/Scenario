@@ -37,12 +37,12 @@ const upload = multer({ storage });
 // Helper to check if a file is a novel chapter text file
 function isChapterFile(filename) {
   // Matches "00 프롤로그  발칙한 관찰자.txt" or "01장  완벽한 진열장과 시선.txt" etc.
-  return /^\d+(프롤로그|장)\s+.+\.txt$/.test(filename);
+  return /^\d+\s*(프롤로그|장)\s+.+\.txt$/.test(filename);
 }
 
 // Helper to parse filename into chapter details
 function parseChapterFilename(filename) {
-  const match = filename.match(/^(\d+)(프롤로그|장)\s+(.+)\.txt$/);
+  const match = filename.match(/^(\d+)\s*(프롤로그|장)\s+(.+)\.txt$/);
   if (!match) return null;
   
   const id = parseInt(match[1], 10);

@@ -10,12 +10,12 @@ const DATA_DIR = path.join(NOVEL_DIR, 'public', 'data');
 
 // Helper to check if a file is a novel chapter text file
 function isChapterFile(filename) {
-  return /^\d+(프롤로그|장)\s+.+\.txt$/.test(filename);
+  return /^\d+\s*(프롤로그|장)\s+.+\.txt$/.test(filename);
 }
 
 // Helper to parse filename into chapter details
 function parseChapterFilename(filename) {
-  const match = filename.match(/^(\d+)(프롤로그|장)\s+(.+)\.txt$/);
+  const match = filename.match(/^(\d+)\s*(프롤로그|장)\s+(.+)\.txt$/);
   if (!match) return null;
   
   const id = parseInt(match[1], 10);

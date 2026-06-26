@@ -1,9 +1,22 @@
 {
-  "chapterCount": 22,
-  "totalCharacters": 34064,
-  "totalWords": 10818,
-  "averageLength": 1548,
+  "chapterCount": 23,
+  "totalCharacters": 35990,
+  "totalWords": 11413,
+  "averageLength": 1565,
   "characterMentions": [
+    {
+      "chapterId": 0,
+      "title": "발칙한 관찰자",
+      "도형": 11,
+      "장로": 3,
+      "교회": 5,
+      "CCTV": 3,
+      "카메라": 3,
+      "AI": 1,
+      "경고": 0,
+      "비밀": 0,
+      "가족": 2
+    },
     {
       "chapterId": 1,
       "title": "완벽한 진열장과 시선",
@@ -292,6 +305,11 @@
     }
   ],
   "tensionIndex": [
+    {
+      "chapterId": 0,
+      "title": "발칙한 관찰자",
+      "tensionScore": 15
+    },
     {
       "chapterId": 1,
       "title": "완벽한 진열장과 시선",
