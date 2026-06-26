@@ -31,6 +31,7 @@ const readerProgressBar = document.getElementById('reader-progress-bar');
 const prevChapterBtn = document.getElementById('prev-chapter-btn');
 const nextChapterBtn = document.getElementById('next-chapter-btn');
 const tocBtn = document.getElementById('toc-btn');
+const readerViewsValue = document.getElementById('reader-views-value');
 
 // Reader Settings Elements
 const settingsToggleBtn = document.getElementById('settings-toggle-btn');
@@ -216,18 +217,23 @@ function renderChaptersGrid() {
     return;
   }
 
-  chaptersGrid.innerHTML = state.chapters.map(c => `
-    <div class="chapter-card" onclick="openReader(${c.id})">
-      <div>
-        <span class="card-num">${c.chapterNumber}${c.type}</span>
-        <h4 class="card-title">${c.title}</h4>
+  const localViewsObj = JSON.parse(localStorage.getItem('viewer-local-views') || '{}');
+
+  chaptersGrid.innerHTML = state.chapters.map(c => {
+    const displayViews = (c.views || 0) + (localViewsObj[c.id] || 0);
+    return `
+      <div class="chapter-card" onclick="openReader(${c.id})">
+        <div>
+          <span class="card-num">${c.chapterNumber}${c.type}</span>
+          <h4 class="card-title">${c.title}</h4>
+        </div>
+        <div class="card-stats">
+          <span>👁️ ${displayViews.toLocaleString()}회</span>
+          <span>${c.charCount.toLocaleString()}자</span>
+        </div>
       </div>
-      <div class="card-stats">
-        <span>독서 시간: 약 ${c.readingTime}분</span>
-        <span>${c.charCount.toLocaleString()}자</span>
-      </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
 /* ==========================================================================
@@ -247,6 +253,28 @@ async function openReader(chapterId) {
   readerContentArea.innerHTML = `<div class="loading-spinner"></div>`;
   switchTab('tab-reader');
 
+  // Increment local storage views cache immediately for real-time feel
+  const localViewsObj = JSON.parse(localStorage.getItem('viewer-local-views') || '{}');
+  localViewsObj[chapterId] = (localViewsObj[chapterId] || 0) + 1;
+  localStorage.setItem('viewer-local-views', JSON.stringify(localViewsObj));
+
+  let serverViews = null;
+  try {
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    if (isLocal) {
+      const viewRes = await fetch(`/api/chapters/${chapterId}/view`, { method: 'POST' });
+      if (viewRes.ok) {
+        const viewData = await viewRes.json();
+        serverViews = viewData.views;
+        // Clear local offset if server handled it successfully
+        localViewsObj[chapterId] = 0;
+        localStorage.setItem('viewer-local-views', JSON.stringify(localViewsObj));
+      }
+    }
+  } catch (err) {
+    console.error('Failed to sync view count with local server:', err);
+  }
+
   try {
     const res = await fetch(`data/chapter-${chapterId}.json`);
     const chapter = await res.json();
@@ -254,6 +282,12 @@ async function openReader(chapterId) {
     // Parse title
     const formattedTitle = `${chapter.chapterNumber}${chapter.type} : ${chapter.title}`;
     readerCurrentTitle.textContent = formattedTitle;
+
+    // Render toolbar views count
+    const finalViews = serverViews !== null ? serverViews : (chapter.views || 0) + localViewsObj[chapterId];
+    if (readerViewsValue) {
+      readerViewsValue.textContent = finalViews.toLocaleString();
+    }
 
     // Split text by newlines and wrap in p tags
     const paragraphs = chapter.content

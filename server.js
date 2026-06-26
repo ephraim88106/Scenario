@@ -61,6 +61,12 @@ function parseChapterFilename(filename) {
 // Scan directory and return list of sorted chapters with stats
 async function getChaptersList() {
   try {
+    let views = {};
+    try {
+      const viewsContent = await fs.readFile(path.join(NOVEL_DIR, 'views.json'), 'utf-8');
+      views = JSON.parse(viewsContent);
+    } catch (err) {}
+
     const files = await fs.readdir(NOVEL_DIR);
     const chapters = [];
     
@@ -82,6 +88,7 @@ async function getChaptersList() {
             charCount,
             wordCount,
             readingTime,
+            views: views[parsed.id] || 0, // Include views
             mtime: stat.mtime
           });
         }
@@ -169,6 +176,32 @@ app.post('/api/upload', upload.single('file'), async (req, res) => {
   } catch (err) {}
   
   res.json({ message: 'File uploaded successfully', filename: originalName });
+});
+
+// 4.5. POST /api/chapters/:id/view - Increment chapter view count
+app.post('/api/chapters/:id/view', async (req, res) => {
+  const id = req.params.id;
+  try {
+    const viewsFile = path.join(NOVEL_DIR, 'views.json');
+    let views = {};
+    try {
+      const content = await fs.readFile(viewsFile, 'utf-8');
+      views = JSON.parse(content);
+    } catch (err) {
+      // views.json doesn't exist yet
+    }
+    
+    views[id] = (views[id] || 0) + 1;
+    await fs.writeFile(viewsFile, JSON.stringify(views, null, 2), 'utf-8');
+    
+    // Regenerate static JSON files so static site matches updated view count
+    await generateStaticData();
+    
+    res.json({ success: true, views: views[id] });
+  } catch (error) {
+    console.error('Error updating view count:', error);
+    res.status(500).json({ error: 'Failed to update view count' });
+  }
 });
 
 // 5. GET /api/stats - Analytical stats of the novel files

@@ -39,6 +39,15 @@ export async function generateStaticData() {
     // Ensure target directory exists
     await fs.mkdir(DATA_DIR, { recursive: true });
     
+    // Load views.json if exists
+    let views = {};
+    try {
+      const viewsContent = await fs.readFile(path.join(NOVEL_DIR, 'views.json'), 'utf-8');
+      views = JSON.parse(viewsContent);
+    } catch (err) {
+      // Ignore error if views.json doesn't exist yet
+    }
+    
     const files = await fs.readdir(NOVEL_DIR);
     const chapters = [];
     
@@ -58,6 +67,7 @@ export async function generateStaticData() {
             charCount,
             wordCount,
             readingTime,
+            views: views[parsed.id] || 0, // Include view count
             mtime: stat.mtime
           });
         }
