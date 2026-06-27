@@ -558,6 +558,8 @@ function resetTtsUI() {
    집필 및 파일 업로드 포털
    ========================================================================== */
 function initEditorAndUpload() {
+  if (!editorTextarea) return; // Guard for removed elements
+  
   // Live Char Counter
   editorTextarea.addEventListener('input', () => {
     const chars = editorTextarea.value.replace(/\s/g, '').length;
@@ -709,6 +711,8 @@ function handleFileSelection(file) {
    OBSERVATION CONSOLE (DASHBOARD) LUNCH & SEARCH
    ========================================================================== */
 async function loadDashboardStats() {
+  if (!tensionWaveform) return; // Guard for removed elements
+  
   // Show Loading States in UI
   tensionWaveform.innerHTML = `<div class="loading-spinner"></div>`;
   keywordFrequencyList.innerHTML = `<div class="loading-spinner"></div>`;
@@ -803,6 +807,8 @@ function renderKeywordFrequencies(mentionsData) {
 }
 
 function initDashboardEvents() {
+  if (!searchBtn) return; // Guard for removed elements
+  
   searchBtn.addEventListener('click', executeDashboardSearch);
   searchInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') executeDashboardSearch();
