@@ -274,5 +274,29 @@
     "readingTime": 4,
     "views": 0,
     "mtime": "2026-06-27T06:06:42.972Z"
+  },
+  {
+    "id": 23,
+    "filename": "23장  식은 칼 (The Cold Blade).txt",
+    "chapterNumber": 23,
+    "type": "장",
+    "title": "식은 칼 (The Cold Blade)",
+    "charCount": 3030,
+    "wordCount": 1011,
+    "readingTime": 7,
+    "views": 0,
+    "mtime": "2026-06-27T07:12:31.747Z"
+  },
+  {
+    "id": 24,
+    "filename": "24장  거절 (The Refusal).txt",
+    "chapterNumber": 24,
+    "type": "장",
+    "title": "거절 (The Refusal)",
+    "charCount": 3604,
+    "wordCount": 1210,
+    "readingTime": 8,
+    "views": 0,
+    "mtime": "2026-06-28T07:24:02.275Z"
   }
 ]

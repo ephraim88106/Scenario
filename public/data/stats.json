@@ -1,8 +1,8 @@
 {
-  "chapterCount": 23,
-  "totalCharacters": 35990,
-  "totalWords": 11410,
-  "averageLength": 1565,
+  "chapterCount": 25,
+  "totalCharacters": 42624,
+  "totalWords": 13631,
+  "averageLength": 1705,
   "characterMentions": [
     {
       "chapterId": 0,
@@ -302,6 +302,32 @@
       "경고": 0,
       "비밀": 0,
       "가족": 0
+    },
+    {
+      "chapterId": 23,
+      "title": "식은 칼 (The Cold Blade)",
+      "도형": 27,
+      "장로": 6,
+      "교회": 2,
+      "CCTV": 0,
+      "카메라": 0,
+      "AI": 0,
+      "경고": 0,
+      "비밀": 0,
+      "가족": 0
+    },
+    {
+      "chapterId": 24,
+      "title": "거절 (The Refusal)",
+      "도형": 32,
+      "장로": 3,
+      "교회": 11,
+      "CCTV": 0,
+      "카메라": 0,
+      "AI": 0,
+      "경고": 0,
+      "비밀": 0,
+      "가족": 0
     }
   ],
   "tensionIndex": [
@@ -419,6 +445,16 @@
       "chapterId": 22,
       "title": "위태로운 배회 (Precarious Wandering)",
       "tensionScore": 11
+    },
+    {
+      "chapterId": 23,
+      "title": "식은 칼 (The Cold Blade)",
+      "tensionScore": 8
+    },
+    {
+      "chapterId": 24,
+      "title": "거절 (The Refusal)",
+      "tensionScore": 1
     }
   ]
 }
